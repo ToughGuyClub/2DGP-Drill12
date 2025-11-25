@@ -144,11 +144,11 @@ class Boy:
     def fire_ball(self):
         if self.ball_count > 0:
             self.ball_count -= 1
-            ball = Ball(self.x+self.face_dir*40, self.y+100, self.face_dir * 15)
-            game_world.add_object(ball, 1)
-            game_world.add_collision_pair('grass:ball', None, ball)
-            game_world.add_collision_pair('boy:ball', None, ball)
-            game_world.add_collision_pair('zombie:ball', None, ball)
+            #ball = Ball(self.x+self.face_dir*40, self.y+100, self.face_dir * 15)
+            #game_world.add_object(ball, 1)
+           #game_world.add_collision_pair('grass:ball', None, ball)
+            #game_world.add_collision_pair('boy:ball', None, ball)
+            #game_world.add_collision_pair('zombie:ball', None, ball)
 
     # fill here
     def get_bb(self):

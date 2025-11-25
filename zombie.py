@@ -114,8 +114,11 @@ class Zombie:
         self.x += distance * math.cos(self.dir)
         self.y += distance * math.sin(self.dir)
         pass
-
-
+    def move_little_to_minus(self,tx,ty):
+        distance = RUN_SPEED_PPS * game_framework.frame_time
+        self.dir = math.atan2(ty - self.y, tx - self.x)
+        self.x -= distance * math.cos(self.dir)
+        self.y -= distance * math.sin(self.dir)
 
     def move_to(self, r=0.5):
         # 여기를 채우시오.
@@ -147,14 +150,27 @@ class Zombie:
 
     def move_to_boy(self, r=0.5):
         # 여기를 채우시오.
-        self.move_little_to(common.boy.x, common.boy.y)
+        if self.compare_ball_count(common.boy.ball_count):
+            self.move_little_to(common.boy.x, common.boy.y)
+        else:
+            # 반대로 이동하는거
+            self.move_little_to_minus(common.boy.x, common.boy.y)
+
         if self.distance_less_than(common.boy.x, common.boy.y, self.x, self.y, r):
+            #볼 개수 비교
+
             return BehaviorTree.SUCCESS
+
         else:
             return BehaviorTree.RUNNING
 
         pass
-
+    def compare_ball_count(self, count):
+        if self.ball_count >= count:
+            return True
+        else:
+            return False
+        pass
 
     def get_patrol_location(self):
         # 여기를 채우시오.
